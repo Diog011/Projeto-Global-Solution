@@ -1,3 +1,4 @@
+numero_desastres = []
 tipo_desastre = []
 paises = []
 cidades = []
@@ -27,7 +28,6 @@ while i in range(n_desastres):
     ruas.append(r)
     pa = int(input("Qual a quantidade de pessoas afetadas? "))
     pessoas_afetadas.append(pa)
-    print(pessoas_afetadas)
     print("------------------------------------")
     cri = int(input("Quantidade de crianças afetadas: "))
     criancas.append(cri)
@@ -39,12 +39,37 @@ while i in range(n_desastres):
     mobilidade_reduzida.append(mr)
     fe = int(input("Quantidade de feridos afetadas"))
     feridos.append(fe)
-    pessoas_total = cri + ad + id + mr + fe
-    pessoas_segmentadas.append(pessoas_total)
-    print(pessoas_segmentadas)
+    pessoas_soma = cri + ad + id + mr + fe
+    pessoas_segmentadas.append(pessoas_soma)
     if pessoas_segmentadas == pessoas_afetadas:
         print("Número de pessoas válido")
     else:
         print("Número inválido")
         break
     i=i+1
+
+print("------------------------------------")
+total_afetadas = sum(pessoas_segmentadas)
+soma_criancas = sum(criancas)
+soma_adultos = sum(adultos)
+soma_idosos = sum(idosos)
+soma_mobilidade_reduzida = sum(mobilidade_reduzida)
+soma_feridos = sum(feridos)
+categorias = ["Crianças", "Adultos", "Idosos", "Mobilidade reduzida", "Feridos"]
+valores = [soma_criancas, soma_adultos, soma_idosos, soma_mobilidade_reduzida, soma_feridos]
+mais_afetada = categorias[valores.index(max(valores))]
+indice_grave = pessoas_afetadas.index(max(pessoas_afetadas))
+
+
+print("O número de desastres é ", n_desastres)
+print("------------------------------------")
+print("O número total de pessoas afetadas é ", total_afetadas)
+print("------------------------------------")
+print("O total por categorias")
+print("Criancas:", soma_criancas,"|", "Adultos:", soma_adultos, "|", "Idosos:", soma_idosos, "|", "Mobilidade Reduzida:", soma_mobilidade_reduzida, "|", "Feridos:", soma_feridos)
+print("------------------------------------")
+print(f"\nCategoria mais afetada: {mais_afetada}")
+print("------------------------------------")
+print("\nDesastre com maior número de afetados:")
+print(f"Tipo: {tipo_desastre[indice_grave]}")
+print(f"Local: {ruas[indice_grave]}, {bairros[indice_grave]}, {cidades[indice_grave]}, {paises[indice_grave]}")
